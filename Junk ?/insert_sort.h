@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.h                                          :+:      :+:    :+:   */
+/*   insert_sort.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2024/12/10 16:47:35 by secros           ###   ########.fr       */
+/*   Created: 2024/12/11 17:57:35 by secros            #+#    #+#             */
+/*   Updated: 2024/12/11 18:01:51 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SORTING_H
-# define SORTING_H
+#ifndef INSERT_SORT_H
+# define INSERT_SORT_H
 
 # include "libft.h"
 
-void	ft_swap(t_list **lst);
-void	*ft_put_stack(t_list **lst_a, t_list **lst_b);
-void	ft_rotate(t_list **lst);
-void	ft_rev_rotate(t_list **lst);
+void	sort_init(t_list **lst_a, t_list **lst_b);
 
 #endif

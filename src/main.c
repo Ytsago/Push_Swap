@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 17:38:43 by secros            #+#    #+#             */
-/*   Updated: 2024/12/11 13:11:46 by secros           ###   ########.fr       */
+/*   Created: 2024/12/11 10:28:35 by secros            #+#    #+#             */
+/*   Updated: 2024/12/11 19:29:31 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
+#include "ft_printf.h"
 
-int	ft_atoi(const char *nptr)
+int	main (int ac, char **av)
 {
-	int	sign;
-	int	value;
+	t_list	*lst_a;
+	t_list	*lst_b;
+	int		i;
 
-	sign = 1;
-	value = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
+	lst_a = NULL;
+	lst_b = NULL;
+	i = 1;
+	while (i < ac)
 	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
+		if (!parsing(&lst_a, av[i++]))
+		{
+			write(2, "Error\n", 6);
+			return (ft_lstclear(&lst_a, free), 1);
+		}
 	}
-	while (ft_isdigit(*nptr))
-	{
-		value *= 10;
-		value += *nptr -48;
-		nptr++;
-	}
-	return (value * sign);
+	if (!lst_a)
+		return (0);
 }

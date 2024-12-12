@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   helper_function.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 17:38:43 by secros            #+#    #+#             */
-/*   Updated: 2024/12/11 13:11:46 by secros           ###   ########.fr       */
+/*   Created: 2024/12/11 17:57:38 by secros            #+#    #+#             */
+/*   Updated: 2024/12/11 18:52:36 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HELPER_FUNCTION_H
+# define HELPER_FUNCTION_H
+
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
-{
-	int	sign;
-	int	value;
+int	lst_max(t_list *lst);
+int	lst_min(t_list *lst);
+// int	check_sort(t_list *lst);
+// int	just_next(t_list *lst, int current);
 
-	sign = 1;
-	value = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-	}
-	while (ft_isdigit(*nptr))
-	{
-		value *= 10;
-		value += *nptr -48;
-		nptr++;
-	}
-	return (value * sign);
-}
+#endif
