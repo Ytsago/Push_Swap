@@ -1,11 +1,7 @@
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror
 CC = cc
 AR = ar
 ARFLAG = -rcs
-
-DEPS = helper_function.d parsing.d main.d sorting.d
-
--include $(DEPS)
 
 GREEN  = \033[32m
 YELLOW = \033[33m
@@ -33,13 +29,13 @@ OBJS = $(FILE:%.c=$(OBJDIR)%.o)
 
 NAME = push_swap
 
-all: $(LIB) $(NAME) $(INCDIR)$(INC)
+all: $(NAME)
 
-$(NAME) : $(OBJS) $(LIB)
+$(NAME) : $(OBJS)
 	@echo "$(YELLOW)Creating final product : $(BLUE)$@...$(RESET)"
-	@$(CC) $(CFLAGS) $? -o $@ && echo "$(GREEN)$@ Created successfully !$(RESET)"
+	@$(CC) $(CFLAGS) $? $(LIB) -o $@ && echo "$(GREEN)$@ Created successfully !$(RESET)"
 
-$(OBJDIR)%.o: $(SRCDIR)%.c $(INCDIR) $(LIB_D)$(INCDIR) | $(OBJDIR)
+$(OBJDIR)%.o: $(SRCDIR)%.c $(LIB) $(INCDIR)$(INC) | $(OBJDIR)
 	$(CC) -c $(CFLAGS) -I $(INCDIR) -I $(LIB_D)$(INCDIR) $< -o $@
 
 $(OBJDIR):

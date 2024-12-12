@@ -58,7 +58,7 @@ clean:
 	@echo "$(RED)Deleting object files...$(RESET)"
 	@rm -rf $(OBJDIR) && echo "$(GREEN)Done !$(RESET)"
 
-fclean: clean
+fclean:
 	@echo "$(RED)Deleting executable or library $(NAME)...$(RESET)"
 	@rm -f $(NAME) && echo "$(GREEN)Done !$(RESET)"
 
