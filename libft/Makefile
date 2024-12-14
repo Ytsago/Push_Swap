@@ -25,7 +25,7 @@ BONUSES = 	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstla
 
 INCDIR = inc/
 
-INCH = libft.h ft_printf.h
+INCH = libft.h ft_printf.h get_next_line.h
 
 INC = $(addprefix $(INCDIR), $(INCH))
 

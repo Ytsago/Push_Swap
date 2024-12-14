@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 10:28:35 by secros            #+#    #+#             */
-/*   Updated: 2024/12/14 14:35:25 by secros           ###   ########.fr       */
+/*   Created: 2024/12/12 15:07:24 by secros            #+#    #+#             */
+/*   Updated: 2024/12/14 12:56:46 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "ft_printf.h"
 
-int	main (int ac, char **av)
+int	check_sort(t_list *lst)
 {
-	t_list	*lst_a;
-	t_list	*lst_b;
-	int		i;
-
-	lst_a = NULL;
-	lst_b = NULL;
-	i = 1;
-	while (i < ac)
+	while (lst->next)
 	{
-		if (!parsing(&lst_a, av[i++]))
-		{
-			write(2, "Error\n", 6);
-			return (ft_lstclear(&lst_a, free), 1);
-		}
+		if (*(int *)lst->content > *(int *)lst->next->content)
+			return (0);
+		lst = lst->next;
 	}
-	if (!lst_a)
-		return (0);
-	while (lst_a)
+	return (1);
+}
+
+void	sort_three(t_list **lst)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = *(int *)(*lst)->content;
+	b = *(int *)(*lst)->next->content;
+	c = *(int *)(*lst)->next->next->content;
+	if (check_sort(*lst))
+		return ;
+	if (a > b && b > c)
 	{
-		ft_printf("%d\n", *(int *)lst_a->content);
-		lst_a = lst_a->next;
+		
 	}
 }

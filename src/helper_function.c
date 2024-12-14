@@ -6,13 +6,13 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:37:17 by secros            #+#    #+#             */
-/*   Updated: 2024/12/11 19:01:48 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/12 15:08:05 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	lst_max(t_list *lst)
+/* int	lst_max(t_list *lst)
 {
 	int	max;
 
@@ -49,4 +49,4 @@ int	check_sort(t_list *lst)
 		lst = lst->next;
 	}
 	return (1);
-}
+} */

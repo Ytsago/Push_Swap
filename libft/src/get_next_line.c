@@ -6,13 +6,13 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 13:46:03 by secros            #+#    #+#             */
-/*   Updated: 2024/12/09 12:51:52 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/14 13:43:13 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*build_line(char *str, char *buff)
+static char	*build_line(char *str, char *buff)
 {
 	char	*end;
 	char	*fs;
@@ -41,7 +41,7 @@ char	*build_line(char *str, char *buff)
 	return (fs);
 }
 
-char	*read_file(int fd, char *buff)
+static char	*read_file(int fd, char *buff)
 {
 	ssize_t		size;
 	size_t		i;
