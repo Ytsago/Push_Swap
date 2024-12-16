@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:07:24 by secros            #+#    #+#             */
-/*   Updated: 2024/12/14 12:56:46 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/15 10:56:26 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,30 @@ int	check_sort(t_list *lst)
 	return (1);
 }
 
-void	sort_three(t_list **lst)
+void	sort_three(t_data *lst_data, t_list **lst)
 {
-	int	a;
-	int	b;
-	int	c;
+	int	x[3];
 
-	a = *(int *)(*lst)->content;
-	b = *(int *)(*lst)->next->content;
-	c = *(int *)(*lst)->next->next->content;
-	if (check_sort(*lst))
-		return ;
-	if (a > b && b > c)
+	x[0] = *(int *)(*lst)->content;
+	x[1] = *(int *)(*lst)->next->content;
+	x[2] = *(int *)(*lst)->next->next->content;
+	if (x[0] > x[1] && x[1] > x[2])
 	{
-		
+		ft_swapa(lst_data, 1);
+		ft_rev_rotate_a(lst_data, 1);
+	}
+	else if (x[0] > x[1] && x[0] > x[2])
+		ft_rotate_a(lst_data, 1);
+	else if (x[0] > x[1] && x[0] < x[2])
+		ft_swapa(lst_data, 1);
+	else if (x[0] < x[1] && x[0] > x[2])
+	{
+		ft_rotate_a(lst_data, 1);
+		ft_rotate_a(lst_data, 1);
+	}
+	else
+	{
+		ft_rev_rotate_a(lst_data, 1);
+		ft_swapa(lst_data,1);
 	}
 }

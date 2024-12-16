@@ -9,7 +9,8 @@ BLUE   = \033[34m
 RED    = \033[31m
 RESET  = \033[0m
 
-FILE = helper_function.c parsing.c main.c sorting.c
+FILE =	helper_function.c parsing.c main.c ft_putstack.c ft_rotate.c ft_rev_rotate.c \
+		ft_swap.c sort_three.c pivo_sort.c
 
 LIB_D = libft/
 
