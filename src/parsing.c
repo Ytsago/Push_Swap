@@ -6,11 +6,11 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:45:54 by secros            #+#    #+#             */
-/*   Updated: 2024/12/11 19:29:22 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/20 09:15:08 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static int	check_dup(t_list *lst, int x)
 {
@@ -26,9 +26,9 @@ static int	check_dup(t_list *lst, int x)
 	return (0);
 }
 
-static int	creat_stack(t_list **lst, char *str)
+static int	creat_stack(t_stack **lst, char *str)
 {
-	t_list	*new;
+	t_stack	*new;
 	int		*nb;
 	long	check;
 

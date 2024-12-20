@@ -6,34 +6,34 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:37:17 by secros            #+#    #+#             */
-/*   Updated: 2024/12/15 11:07:49 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/20 09:13:48 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	lst_max(t_list *lst)
+int	stack_max(t_stack *lst)
 {
 	int	max;
 
-	max = *(int *)lst->content;
+	max = lst->content;
 	while(lst)
 	{
-		if (max < *(int *)lst->content)
-			max = *(int *)lst->content;
+		if (max < lst->content)
+			max = lst->content;
 		lst = lst->next;
 	}
 	return (max);
 }
-int	lst_min(t_list *lst)
+int	lst_min(t_stack *lst)
 {
 	int	min;
 
-	min = *(int *)lst->content;
+	min = lst->content;
 	while(lst)
 	{
-		if (min > *(int *)lst->content)
-			min = *(int *)lst->content;
+		if (min > lst->content)
+			min = lst->content;
 		lst = lst->next;
 	}
 	return (min);

@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:28:35 by secros            #+#    #+#             */
-/*   Updated: 2024/12/15 17:02:02 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/20 09:14:08 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main (int ac, char **av)
 	}
 	if (!lst_data.lst_a)
 		return (0);
-	lst_data.size_a = ft_lstsize(lst_data.lst_a);
+	lst_data.size_a = stack_size(lst_data.lst_a);
 	lst_data.size_b = 0;
 	sorting(&lst_data);
 	ft_printf("\nlst a :\n");

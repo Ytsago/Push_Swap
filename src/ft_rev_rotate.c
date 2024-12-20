@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 08:56:15 by secros            #+#    #+#             */
-/*   Updated: 2024/12/15 09:27:11 by secros           ###   ########.fr       */
+/*   Updated: 2024/12/20 09:07:36 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 
 void	ft_rev_rotate_a(t_data *lst_data, int print)
 {
-	t_list	*last;
-	t_list	*prev;
-	t_list	**lst;
+	t_stack	*last;
+	t_stack	**lst;
 
 	lst = &lst_data->lst_a;
 	if (!*lst || !(*lst)->next)
 		return ;
 	last = *lst;
 	while (last->next)
-	{
-		prev = last;
 		last = last->next;
-	}
 	last->next = *lst;
-	prev->next = NULL;
+	last->prev->next = NULL;
+	last->prev = NULL;
 	*lst = last;
 	if (print)
 		write(1, "rra\n", 4);
@@ -36,21 +33,18 @@ void	ft_rev_rotate_a(t_data *lst_data, int print)
 
 void	ft_rev_rotate_b(t_data *lst_data, int print)
 {
-	t_list	*last;
-	t_list	*prev;
-	t_list	**lst;
+	t_stack	*last;
+	t_stack	**lst;
 
 	lst = &lst_data->lst_b;
 	if (!*lst || !(*lst)->next)
 		return ;
 	last = *lst;
 	while (last->next)
-	{
-		prev = last;
 		last = last->next;
-	}
 	last->next = *lst;
-	prev->next = NULL;
+	last->prev->next = NULL;
+	last->prev = NULL;
 	*lst = last;
 	if (print)
 		write(1, "rrb\n", 4);
