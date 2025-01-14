@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2024/12/20 08:58:06 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:45:25 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_stack
 {
 	int				content;
+	int				q;
 	int				cost;
 	int				cheap;
 	int				target;
@@ -29,8 +30,10 @@ typedef struct s_data
 {
 	t_stack		*lst_a;
 	t_stack		*lst_b;
-	size_t		size_a;
-	size_t		size_b;
+	int			med;
+	int			q[2];
+	int		size_a;
+	int		size_b;
 }				t_data;
 
 int		parsing(t_stack **lst, char *str);
@@ -55,15 +58,18 @@ void	ft_rev_rotate_r(t_data *lst_data);
 void	*new_stack(int content);
 void	stack_addfront(t_stack **stack, t_stack *new);
 int		stack_size(t_stack *stack);
-void	*stack_last(t_stack *stack);
+t_stack	*stack_last(t_stack *stack);
+void	stack_addback(t_stack **stack, t_stack *new);
+void	stack_clear(t_stack **stack);
 
 //utils
 int	check_sort(t_stack *lst);
 int	lst_max(t_stack *lst);
 int	lst_min(t_stack *lst);
+int	just_next(t_data *data, int content);
 
 //sort three
-void	sort_three(t_data *lst_data, t_list **lst);
+void	sort_three(t_data *lst_data, t_stack **lst);
 
 //pivo sort
 void	pivo_init(t_data *lst_data);

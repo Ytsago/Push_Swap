@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 08:56:15 by secros            #+#    #+#             */
-/*   Updated: 2024/12/20 09:07:36 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/14 15:32:23 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_rev_rotate_a(t_data *lst_data, int print)
 	last->next = *lst;
 	last->prev->next = NULL;
 	last->prev = NULL;
+	(*lst)->prev = last;
 	*lst = last;
 	if (print)
 		write(1, "rra\n", 4);

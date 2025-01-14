@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 08:43:17 by secros            #+#    #+#             */
-/*   Updated: 2024/12/20 08:53:46 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/08 10:11:36 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,28 @@ void	*new_stack(int content)
 
 void	stack_addfront(t_stack **stack, t_stack *new)
 {
-	if (!stack)
+	if (!*stack)
+	{
 		*stack = new;
+		return ;
+	}
 	new->next = *stack;
 	(*stack)->prev = new;
 	*stack = new;
+}
+
+void	stack_addback(t_stack **stack, t_stack *new)
+{
+	t_stack	*last;
+
+	if (!*stack)
+	{
+		*stack = new;
+		return ;
+	}
+	last = stack_last(*stack);
+	last->next = new;
+	new->prev = last;
 }
 
 int	stack_size(t_stack *stack)
@@ -50,11 +67,25 @@ int	stack_size(t_stack *stack)
 	return ((int) i);
 }
 
-void	*stack_last(t_stack *stack)
+t_stack	*stack_last(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
 	while (stack->next)
 		stack = stack->next;
 	return (stack);
+}
+
+void	stack_clear(t_stack **stack)
+{
+	t_stack *pt;
+
+	if (!stack || !*stack)
+		return ;
+	while (*stack)
+	{
+		pt = *stack;
+		*stack = (*stack)->next;
+		free(pt);
+	}
 }

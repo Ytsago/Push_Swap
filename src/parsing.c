@@ -6,19 +6,19 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:45:54 by secros            #+#    #+#             */
-/*   Updated: 2024/12/20 09:15:08 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/06 11:07:41 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_dup(t_list *lst, int x)
+static int	check_dup(t_stack *lst, int x)
 {
 	int		y;
 
 	while (lst)
 	{
-		y = *(int *)lst->content;
+		y = lst->content;
 		if (y == x)
 			return (1);
 		lst = lst->next;
@@ -29,20 +29,17 @@ static int	check_dup(t_list *lst, int x)
 static int	creat_stack(t_stack **lst, char *str)
 {
 	t_stack	*new;
-	int		*nb;
+	int		nb;
 	long	check;
 
-	nb = malloc(sizeof(int));
-	if (!nb)
-		return (0);
-	*nb = ft_atoi(str);
+	nb = ft_atoi(str);
 	check = ft_atol(str);
-	if (check_dup(*lst, *nb) || *nb != check)
-		return (free(nb), 0);
-	new = ft_lstnew(nb);
+	if (check_dup(*lst, nb) || nb != check)
+		return (0);
+	new = new_stack(nb);
 	if (!new)
-		return (free(nb), 0);
-	ft_lstadd_back(lst, new);
+		return (0);
+	stack_addback(lst, new);
 	return (1);
 }
 
@@ -65,7 +62,7 @@ static int	only_digit(char *str)
 	return (1);
 }
 
-int	parsing(t_list **lst, char *str)
+int	parsing(t_stack **lst, char *str)
 {
 	char	**number;
 	size_t	i;
