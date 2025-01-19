@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 08:43:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/08 10:11:36 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/19 15:01:13 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	stack_addback(t_stack **stack, t_stack *new)
 	}
 	last = stack_last(*stack);
 	last->next = new;
+	new->next = NULL;
 	new->prev = last;
 }
 

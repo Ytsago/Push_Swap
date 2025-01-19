@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:57:32 by secros            #+#    #+#             */
-/*   Updated: 2025/01/14 19:09:16 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:55:57 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int	medium_quart(t_data *data, int x, int y)
 
 void	quart_push(t_data *data)
 {
-	int	rot;
-
-	rot = 0;
 	while (medium_quart(data, 2 ,3))
 	{
 		if (data->lst_a->q == 3)
@@ -92,6 +89,7 @@ void	quart_push(t_data *data)
 		}
 	}
 }
+
 void	set_quart(t_data *data, t_stack *lst)
 {
 	while (lst)
@@ -110,37 +108,58 @@ void	set_target(t_data *data)
 	b = data->lst_b;
 	while (b)
 	{
+		b->cheap = 0;
 		b->target = just_next(data, b->content);
 		b = b->next;
 	}
 }
 
-void	find_cheapest(t_stack **stk)
+int	calc_move( int x, int y)
+{
+	int	cost;
+
+	cost = 0;
+	if (x * y >= 0)
+	{
+		if ((x > y && x > 0) || (x < y && x < 0))
+			cost = absolute(x);
+		else
+			cost = absolute(y);
+	}
+	else
+		cost = absolute(x) + absolute(y);
+	return (cost);
+}
+
+//cost[0] -> lst_b cost[1] -> lst_a
+void	*find_cheapest(t_stack *stk)
 {
 	t_stack	*lst;
 	int		x;
 
-	lst = *stk;
-	x = lst->cost;
+	lst = stk;
+	x = 1000000;
 	while (lst)
 	{
-		if (lst->cost < x)
-			x = lst->cost;
+		lst->cost[2] = calc_move(lst->cost[0], lst->cost[1]);
+		if (x > lst->cost[2])
+			x = lst->cost[2];
+		lst->cheap = 0;
 		lst = lst->next;
 	}
-	lst = *stk;
-	while (lst)
+	while(stk)
 	{
-		if (lst->cost == x)
+		if (stk->cost[2] == x)
 		{
-			lst->cheap = 1;
-			return ;
+			stk->cheap = 1;
+			return (stk);
 		}
-		lst = lst->next;
+		stk = stk->next;
 	}
+	return (NULL);
 }
 
-void	calc_cost(t_data *data, t_stack **lst, int i)
+void	calc_cost(t_data *data, t_stack *lst, int i)
 {
 	int		j;
 	t_stack	*sta_a;
@@ -151,8 +170,7 @@ void	calc_cost(t_data *data, t_stack **lst, int i)
 		i = -(data->size_b - i);
 	while (sta_a)
 	{
-		ft_printf("\ncontent[%d], target[%d], j[%d]", sta_a->content, (*lst)->target, j);
-		if (sta_a->content == (*lst)->target)
+		if (sta_a->content == lst->target)
 		{
 			if (j > data->size_a / 2)
 				j = -(data->size_a - j);
@@ -161,7 +179,47 @@ void	calc_cost(t_data *data, t_stack **lst, int i)
 		j++;
 		sta_a = sta_a->next;
 	}
-	(*lst)->cost = i + j;
+	lst->cost[0] = i;
+	lst->cost[1] = j;
+}
+
+void	opti_move(t_data *data, void *pt)
+{
+	t_stack	*stk;
+
+	stk = pt;
+	while (stk->cost[0] > 0 && stk->cost[1] > 0)
+	{
+		ft_rotate_r(data);
+		stk->cost[0]--;
+		stk->cost[1]--;
+	}
+	while (stk->cost[0] < 0 && stk->cost[1] < 0)
+	{
+		ft_rev_rotate_r(data);
+		stk->cost[0]++;
+		stk->cost[1]++;
+	}
+	while (stk->cost[0] > 0)
+	{
+		ft_rotate_b(data, 1);
+		stk->cost[0]--;
+	}
+	while (stk->cost[1] > 0)
+	{
+		ft_rotate_a(data, 1);
+		stk->cost[1]--;
+	}
+	while (stk->cost[0] < 0)
+	{
+		ft_rev_rotate_b(data, 1);
+		stk->cost[0]++;
+	}
+	while (stk->cost[1] < 0)
+	{
+		ft_rev_rotate_a(data, 1);
+		stk->cost[1]++;
+	}
 }
 
 void	opti_sort(t_data *data)
@@ -173,21 +231,25 @@ void	opti_sort(t_data *data)
 	lst = data->lst_b;
 	while (lst)
 	{
-		calc_cost(data, &lst, i);
+		calc_cost(data, lst, i);
 		lst = lst->next;
 		i++;
 	}
-	find_cheapest(&data->lst_b);
+	opti_move(data, find_cheapest(data->lst_b));
+	ft_put_stacka(data, 1);
+	incert_sort(data);
 }
 
 void	incert_sort(t_data *data)
 {
 	t_stack	*lst[2];
 
+	if (data->size_b == 0)
+		return ;
 	lst[0] = data->lst_a;
 	lst[1] = data->lst_b;
 	set_target(data);
-	if (lst[1]->content > lst_max(lst[0]) && lst[0]->content == lst_min(lst[0]))
+	/* if (lst[1]->content > lst_max(lst[0]) && lst[0]->content == lst_min(lst[0]))
 	{
 		ft_put_stacka(data, 1);
 		return (ft_rotate_a(data, 1), incert_sort(data));
@@ -201,13 +263,15 @@ void	incert_sort(t_data *data)
 		ft_rev_rotate_a(data, 1);
 		return (ft_put_stacka(data, 1), incert_sort(data));
 	}
-	else
+	else */
 		opti_sort(data);
 }
 
 void	pivo_sort(t_data *data)
 {
 	size_t	len;
+ 	t_stack	*lst;
+	int i = 0; 
 
 	data->size_a = stack_size(data->lst_a);
 	data->size_b = 0;
@@ -215,10 +279,18 @@ void	pivo_sort(t_data *data)
 	data->med = find_real_value(data->lst_a, data->lst_a, len, 2);
 	data->q[0] = find_real_value(data->lst_a, data->lst_a, len, 4);
 	data->q[1] = find_real_value(data->lst_a, data->lst_a, len * 3, 4);
-	ft_printf("q1[%d], med[%d], q2[%d], size_a[%d]\n", data->q[0], data->med, data->q[1], data->size_a);
 	set_quart(data, data->lst_a);
 	quart_push(data);
 	if (!check_sort(data->lst_a))
 		sort_three(data, &data->lst_a);
-	incert_sort(data);
+ 	set_target(data);
+	lst = data->lst_b;
+	while (lst)
+	{
+		calc_cost(data, lst, i);
+		i++;
+		lst = lst->next;
+	}
+	find_cheapest(data->lst_b);
+	//incert_sort(data);
 }

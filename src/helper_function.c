@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:37:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/14 18:16:18 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/19 14:23:39 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	just_next(t_data *data, int content)
 
 	lst_a = data->lst_a;
 	x = lst_a->content;
+	if (content > lst_max(lst_a) || content < lst_min(lst_a))
+		return (lst_min(lst_a));
 	while (lst_a)
 	{
 		if (content > x || (content < lst_a->content && lst_a->content < x))
@@ -54,9 +56,16 @@ int	just_next(t_data *data, int content)
 		
 		lst_a = lst_a->next;
 	}
-	ft_printf("\n content[%d], next[%d]\n", content, x);
 	return (x);
 }
+
+int	absolute(int x)
+{
+	if (x < 0)
+		x *= -1;
+	return (x);
+}
+
 /*
 int	check_sort(t_list *lst)
 {

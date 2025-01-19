@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2025/01/14 18:45:25 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/15 15:46:01 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_stack
 {
 	int				content;
 	int				q;
-	int				cost;
+	int				cost[3];
 	int				cheap;
 	int				target;
 	struct s_stack	*next;
@@ -32,8 +32,8 @@ typedef struct s_data
 	t_stack		*lst_b;
 	int			med;
 	int			q[2];
-	int		size_a;
-	int		size_b;
+	int			size_a;
+	int			size_b;
 }				t_data;
 
 int		parsing(t_stack **lst, char *str);
@@ -63,15 +63,17 @@ void	stack_addback(t_stack **stack, t_stack *new);
 void	stack_clear(t_stack **stack);
 
 //utils
-int	check_sort(t_stack *lst);
-int	lst_max(t_stack *lst);
-int	lst_min(t_stack *lst);
-int	just_next(t_data *data, int content);
+int		check_sort(t_stack *lst);
+int		lst_max(t_stack *lst);
+int		lst_min(t_stack *lst);
+int		just_next(t_data *data, int content);
+int		absolute(int x);
 
 //sort three
 void	sort_three(t_data *lst_data, t_stack **lst);
 
 //pivo sort
+void	incert_sort(t_data *data);
 void	pivo_init(t_data *lst_data);
 void	pivo_sort(t_data *lst_data);
 
