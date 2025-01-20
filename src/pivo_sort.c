@@ -6,12 +6,13 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:57:32 by secros            #+#    #+#             */
-/*   Updated: 2025/01/19 17:55:57 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:33:36 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf.h"
+#include "get_next_line.h"
 
 static int	find_real_value(t_stack *lst, t_stack *cur, size_t len, size_t div)
 {
@@ -77,6 +78,40 @@ void	quart_push(t_data *data)
 		}
 		else
 			ft_rotate_a(data, 1);
+		t_stack	*lsta[2];
+		lsta[0] = data->lst_a;
+		lsta[1] = data->lst_b;
+		ft_printf("--------------------------------\nlst a :\n");
+	while (lsta[0])
+	{
+		if (lsta[0]->prev == NULL)
+			ft_printf("nill<--  ");
+		else
+			ft_printf("%d<--  ", lsta[0]->prev->content);
+		ft_printf("%d  -->  ", lsta[0]->content);
+		if (lsta[0]->next == NULL)
+			ft_printf("nill");
+		else
+			ft_printf("%d\n", lsta[0]->next->content);
+		//ft_printf("q[%d] target[%d]\n", lsta[0]->content, lsta[0]->q, lsta[0]->target);
+		lsta[0] = lsta[0]->next;
+	}
+	ft_printf("\n\nlst b :\n");
+	while (lsta[1])
+	{
+		if (lsta[1]->prev == NULL)
+			ft_printf("nill");
+		else
+			ft_printf("%d", lsta[1]->prev->content);
+		ft_printf("  <---  %d  --->  ", lsta[1]->content);
+		if (lsta[1]->next == NULL)
+			ft_printf("nill");
+		else
+			ft_printf("%d\n", lsta[1]->next->content);
+		//ft_printf("cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lsta[1]->content, lsta[1]->cost[0], lsta[1]->cost[1], lsta[1]->target, lsta[1]->cost[2], lsta[1]->cheap);
+		lsta[1] = lsta[1]->next;
+	}
+	get_next_line(0);
 	}
 	while (data->size_a > 3)
 	{
@@ -87,6 +122,40 @@ void	quart_push(t_data *data)
 			ft_put_stackb(data, 1);
 			ft_rotate_b(data, 1);
 		}
+		t_stack	*lsta[2];
+		lsta[0] = data->lst_a;
+		lsta[1] = data->lst_b;
+		ft_printf("--------------------------------\nlst a :\n");
+		while (lsta[0])
+		{
+			if (lsta[0]->prev == NULL)
+				ft_printf("nill<--  ");
+			else
+				ft_printf("%d<--  ", lsta[0]->prev->content);
+			ft_printf("%d  -->  ", lsta[0]->content);
+			if (lsta[0]->next == NULL)
+				ft_printf("nill");
+			else
+				ft_printf("%d\n", lsta[0]->next->content);
+			//ft_printf("q[%d] target[%d]\n", lsta[0]->content, lsta[0]->q, lsta[0]->target);
+			lsta[0] = lsta[0]->next;
+		}
+		ft_printf("\n\nlst b :\n");
+		while (lsta[1])
+		{
+			if (lsta[1]->prev == NULL)
+				ft_printf("nill");
+			else
+				ft_printf("%d", lsta[1]->prev->content);
+			ft_printf("  <---  %d  --->  ", lsta[1]->content);
+			if (lsta[1]->next == NULL)
+				ft_printf("nill");
+			else
+				ft_printf("%d\n", lsta[1]->next->content);
+			//ft_printf("cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lsta[1]->content, lsta[1]->cost[0], lsta[1]->cost[1], lsta[1]->target, lsta[1]->cost[2], lsta[1]->cheap);
+			lsta[1] = lsta[1]->next;
+		}
+		get_next_line(0);
 	}
 }
 
@@ -235,6 +304,41 @@ void	opti_sort(t_data *data)
 		lst = lst->next;
 		i++;
 	}
+	find_cheapest(data->lst_b);
+		t_stack	*lsta[2];
+	lsta[0] = data->lst_a;
+	lsta[1] = data->lst_b;
+	ft_printf("--------------------------------\nlst a :\n");
+	while (lsta[0])
+	{
+		if (lsta[0]->prev == NULL)
+			ft_printf("nill<--  ");
+		else
+			ft_printf("%d<--  ", lsta[0]->prev->content);
+		ft_printf("%d  -->  ", lsta[0]->content);
+		if (lsta[0]->next == NULL)
+			ft_printf("nill");
+		else
+			ft_printf("%d\n", lsta[0]->next->content);
+		//ft_printf("q[%d] target[%d]\n", lsta[0]->content, lsta[0]->q, lsta[0]->target);
+		lsta[0] = lsta[0]->next;
+	}
+	ft_printf("\n\nlst b :\n");
+	while (lsta[1])
+	{
+		if (lsta[1]->prev == NULL)
+			ft_printf("nill");
+		else
+			ft_printf("%d", lsta[1]->prev->content);
+		ft_printf("  <---  %d  --->  ", lsta[1]->content);
+		if (lsta[1]->next == NULL)
+			ft_printf("nill");
+		else
+			ft_printf("%d\n", lsta[1]->next->content);
+		//ft_printf("cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lsta[1]->content, lsta[1]->cost[0], lsta[1]->cost[1], lsta[1]->target, lsta[1]->cost[2], lsta[1]->cheap);
+		lsta[1] = lsta[1]->next;
+	}
+	get_next_line(0);
 	opti_move(data, find_cheapest(data->lst_b));
 	ft_put_stacka(data, 1);
 	incert_sort(data);
@@ -249,29 +353,12 @@ void	incert_sort(t_data *data)
 	lst[0] = data->lst_a;
 	lst[1] = data->lst_b;
 	set_target(data);
-	/* if (lst[1]->content > lst_max(lst[0]) && lst[0]->content == lst_min(lst[0]))
-	{
-		ft_put_stacka(data, 1);
-		return (ft_rotate_a(data, 1), incert_sort(data));
-	}
-	if (lst[1]->content < lst_min(lst[0]) && lst[0]->content == lst_min(lst[0]))
-		return (ft_put_stacka(data, 1), incert_sort(data));
-	if (lst[1]->target == lst[0]->content)
-		return (ft_put_stacka(data, 1), incert_sort(data));
-	if (stack_last(data->lst_a)->content == lst[1]->target)
-	{
-		ft_rev_rotate_a(data, 1);
-		return (ft_put_stacka(data, 1), incert_sort(data));
-	}
-	else */
-		opti_sort(data);
+	opti_sort(data);
 }
 
 void	pivo_sort(t_data *data)
 {
 	size_t	len;
- 	t_stack	*lst;
-	int i = 0; 
 
 	data->size_a = stack_size(data->lst_a);
 	data->size_b = 0;
@@ -283,14 +370,5 @@ void	pivo_sort(t_data *data)
 	quart_push(data);
 	if (!check_sort(data->lst_a))
 		sort_three(data, &data->lst_a);
- 	set_target(data);
-	lst = data->lst_b;
-	while (lst)
-	{
-		calc_cost(data, lst, i);
-		i++;
-		lst = lst->next;
-	}
-	find_cheapest(data->lst_b);
-	//incert_sort(data);
+	incert_sort(data);
 }

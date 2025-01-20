@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:28:35 by secros            #+#    #+#             */
-/*   Updated: 2025/01/19 15:12:18 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/20 19:23:58 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	sorting(t_data *lst_data)
 		return ;
 	if (lst_data->size_a == 2)
 		ft_swapa(lst_data, 1);
-	if (lst_data->size_a == 3)
+	else if (lst_data->size_a == 3)
 		sort_three(lst_data, &lst_data->lst_a);
-	pivo_sort(lst_data);
+	else
+		pivo_sort(lst_data);
 	lst = lst_data->lst_a;
 	while (lst->content != lst_min(lst_data->lst_a))
 	{
-		lst =lst->next;
+		lst = lst->next;
 		i++;
 	}
 	while (i > lst_data->size_a / 2 && i < lst_data->size_a)
@@ -73,7 +74,7 @@ int	main (int ac, char **av)
 	ft_printf("\nlst b :\n");
 	while (lst_data.lst_b)
 	{
-		ft_printf("%d cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lst_data.lst_b->content, lst_data.lst_b->cost[0], lst_data.lst_b->cost[1], lst_data.lst_b->target, lst_data.lst_b->cost[2], lst_data.lst_b->cheap);
+		ft_printf("%d cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lst_data.lst_b->content, lst_data.lst_b->q, lst_data.lst_b->cost[1], lst_data.lst_b->target, lst_data.lst_b->cost[2], lst_data.lst_b->cheap);
 		lst_data.lst_b = lst_data.lst_b->next;
 	}
 }
