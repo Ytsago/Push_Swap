@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 12:57:12 by secros            #+#    #+#             */
-/*   Updated: 2024/12/20 09:12:42 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 11:21:44 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_swapa(t_data *lst_data, int print)
 		return ;
 	tmp = *lst;
 	*lst = (*lst)->next;
+	if ((*lst)->next)
+		(*lst)->next->prev = tmp;
 	tmp->next = (*lst)->next;
 	tmp->prev = (*lst);
 	(*lst)->next = tmp;
@@ -40,6 +42,8 @@ void	ft_swapb(t_data *lst_data, int print)
 		return ;
 	tmp = *lst;
 	*lst = (*lst)->next;
+	if ((*lst)->next)
+		(*lst)->next->prev = tmp;
 	tmp->next = (*lst)->next;
 	tmp->prev = (*lst);
 	(*lst)->next = tmp;
@@ -48,18 +52,19 @@ void	ft_swapb(t_data *lst_data, int print)
 		write(1, "sb\n", 3);
 }
 
-void	ft_swaps(t_data *lst_data)
+void	ft_swaps(t_data *lst_data, int print)
 {
 	t_stack	**lst_a;
 	t_stack	**lst_b;
 
 	lst_a = &lst_data->lst_a;
 	lst_b = &lst_data->lst_b;
-	if (!*lst_a || !*lst_b)
+	if (!*lst_a && !*lst_b)
 		return ;
-	if (!(*lst_a)->next || !(*lst_b)->next)
+	if (!(*lst_a)->next && !(*lst_b)->next)
 		return ;
 	ft_swapa(lst_data, 0);
 	ft_swapb(lst_data, 0);
-	write(1, "ss\n", 3);
+	if (print)
+		write(1, "ss\n", 3);
 }

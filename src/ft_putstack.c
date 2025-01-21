@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:02:43 by secros            #+#    #+#             */
-/*   Updated: 2025/01/20 20:15:32 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 10:09:52 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	ft_put_stacka(t_data *lst_data, int print)
 		return ;
 	tmp = *lst_b;
 	*lst_b = (*lst_b)->next;
-	(*lst_b)->prev = NULL;
+	if (*lst_b)
+		(*lst_b)->prev = NULL;
 	tmp->next = NULL;
 	tmp->prev = NULL;
 	stack_addfront(lst_a, tmp);

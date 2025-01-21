@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:57:32 by secros            #+#    #+#             */
-/*   Updated: 2025/01/20 20:33:36 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 11:22:00 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,40 +78,6 @@ void	quart_push(t_data *data)
 		}
 		else
 			ft_rotate_a(data, 1);
-		t_stack	*lsta[2];
-		lsta[0] = data->lst_a;
-		lsta[1] = data->lst_b;
-		ft_printf("--------------------------------\nlst a :\n");
-	while (lsta[0])
-	{
-		if (lsta[0]->prev == NULL)
-			ft_printf("nill<--  ");
-		else
-			ft_printf("%d<--  ", lsta[0]->prev->content);
-		ft_printf("%d  -->  ", lsta[0]->content);
-		if (lsta[0]->next == NULL)
-			ft_printf("nill");
-		else
-			ft_printf("%d\n", lsta[0]->next->content);
-		//ft_printf("q[%d] target[%d]\n", lsta[0]->content, lsta[0]->q, lsta[0]->target);
-		lsta[0] = lsta[0]->next;
-	}
-	ft_printf("\n\nlst b :\n");
-	while (lsta[1])
-	{
-		if (lsta[1]->prev == NULL)
-			ft_printf("nill");
-		else
-			ft_printf("%d", lsta[1]->prev->content);
-		ft_printf("  <---  %d  --->  ", lsta[1]->content);
-		if (lsta[1]->next == NULL)
-			ft_printf("nill");
-		else
-			ft_printf("%d\n", lsta[1]->next->content);
-		//ft_printf("cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lsta[1]->content, lsta[1]->cost[0], lsta[1]->cost[1], lsta[1]->target, lsta[1]->cost[2], lsta[1]->cheap);
-		lsta[1] = lsta[1]->next;
-	}
-	get_next_line(0);
 	}
 	while (data->size_a > 3)
 	{
@@ -122,40 +88,6 @@ void	quart_push(t_data *data)
 			ft_put_stackb(data, 1);
 			ft_rotate_b(data, 1);
 		}
-		t_stack	*lsta[2];
-		lsta[0] = data->lst_a;
-		lsta[1] = data->lst_b;
-		ft_printf("--------------------------------\nlst a :\n");
-		while (lsta[0])
-		{
-			if (lsta[0]->prev == NULL)
-				ft_printf("nill<--  ");
-			else
-				ft_printf("%d<--  ", lsta[0]->prev->content);
-			ft_printf("%d  -->  ", lsta[0]->content);
-			if (lsta[0]->next == NULL)
-				ft_printf("nill");
-			else
-				ft_printf("%d\n", lsta[0]->next->content);
-			//ft_printf("q[%d] target[%d]\n", lsta[0]->content, lsta[0]->q, lsta[0]->target);
-			lsta[0] = lsta[0]->next;
-		}
-		ft_printf("\n\nlst b :\n");
-		while (lsta[1])
-		{
-			if (lsta[1]->prev == NULL)
-				ft_printf("nill");
-			else
-				ft_printf("%d", lsta[1]->prev->content);
-			ft_printf("  <---  %d  --->  ", lsta[1]->content);
-			if (lsta[1]->next == NULL)
-				ft_printf("nill");
-			else
-				ft_printf("%d\n", lsta[1]->next->content);
-			//ft_printf("cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lsta[1]->content, lsta[1]->cost[0], lsta[1]->cost[1], lsta[1]->target, lsta[1]->cost[2], lsta[1]->cheap);
-			lsta[1] = lsta[1]->next;
-		}
-		get_next_line(0);
 	}
 }
 
@@ -252,42 +184,93 @@ void	calc_cost(t_data *data, t_stack *lst, int i)
 	lst->cost[1] = j;
 }
 
+// void	opti_move(t_data *data, void *pt)
+// {
+// 	t_stack	*stk;
+
+// 	stk = pt;
+// 	while (stk->cost[0] > 0 && stk->cost[1] > 0)
+// 	{
+// 		ft_rotate_r(data);
+// 		stk->cost[0]--;
+// 		stk->cost[1]--;
+// 	}
+// 	while (stk->cost[0] < 0 && stk->cost[1] < 0)
+// 	{
+// 		ft_rev_rotate_r(data);
+// 		stk->cost[0]++;
+// 		stk->cost[1]++;
+// 	}
+// 	while (stk->cost[0] > 0)
+// 	{
+// 		ft_rotate_b(data, 1);
+// 		stk->cost[0]--;
+// 	}
+// 	while (stk->cost[1] > 0)
+// 	{
+// 		ft_rotate_a(data, 1);
+// 		stk->cost[1]--;
+// 	}
+// 	while (stk->cost[0] < 0)
+// 	{
+// 		ft_rev_rotate_b(data, 1);
+// 		stk->cost[0]++;
+// 	}
+// 	while (stk->cost[1] < 0)
+// 	{
+// 		ft_rev_rotate_a(data, 1);
+// 		stk->cost[1]++;
+// 	}
+// }
+
+void	cost_rotate(t_data *data, t_stack *stk, int way, char stack)
+{
+	if (way == 1)
+	{
+		if (stack == 'A')
+			ft_rotate_a(data, 1);
+		else if (stack == 'B')
+			ft_rotate_b(data, 1);
+		stk->cost[absolute('B' - stack)]--;
+	}
+	else if (way == 0)
+	{
+		if (stack == 'A')
+			ft_rev_rotate_a(data, 1);
+		else if (stack == 'B')
+			ft_rev_rotate_b(data, 1);
+		stk->cost[absolute('B' - stack)]++;
+	}
+}
+
 void	opti_move(t_data *data, void *pt)
 {
 	t_stack	*stk;
 
 	stk = pt;
-	while (stk->cost[0] > 0 && stk->cost[1] > 0)
+	while (stk->cost[2] > 0)
 	{
-		ft_rotate_r(data);
-		stk->cost[0]--;
-		stk->cost[1]--;
-	}
-	while (stk->cost[0] < 0 && stk->cost[1] < 0)
-	{
-		ft_rev_rotate_r(data);
-		stk->cost[0]++;
-		stk->cost[1]++;
-	}
-	while (stk->cost[0] > 0)
-	{
-		ft_rotate_b(data, 1);
-		stk->cost[0]--;
-	}
-	while (stk->cost[1] > 0)
-	{
-		ft_rotate_a(data, 1);
-		stk->cost[1]--;
-	}
-	while (stk->cost[0] < 0)
-	{
-		ft_rev_rotate_b(data, 1);
-		stk->cost[0]++;
-	}
-	while (stk->cost[1] < 0)
-	{
-		ft_rev_rotate_a(data, 1);
-		stk->cost[1]++;
+		if (stk->cost[0] > 0 && stk->cost[1] > 0)
+		{
+			ft_rotate_r(data, 1);
+			stk->cost[0]--;
+			stk->cost[1]--;
+		}
+		if (stk->cost[0] < 0 && stk->cost[1] < 0)
+		{
+			ft_rev_rotate_r(data, 1);
+			stk->cost[0]++;
+			stk->cost[1]++;
+		}
+		if (stk->cost[0] > 0)
+			cost_rotate(data, stk, 1, 'B');
+		if (stk->cost[1] > 0)
+			cost_rotate(data, stk, 1, 'A');
+		if (stk->cost[0] < 0)
+			cost_rotate(data, stk, 0, 'B');
+		if (stk->cost[1] < 0)
+			cost_rotate(data, stk, 0, 'A');
+		stk->cost[2]--;
 	}
 }
 
@@ -305,40 +288,6 @@ void	opti_sort(t_data *data)
 		i++;
 	}
 	find_cheapest(data->lst_b);
-		t_stack	*lsta[2];
-	lsta[0] = data->lst_a;
-	lsta[1] = data->lst_b;
-	ft_printf("--------------------------------\nlst a :\n");
-	while (lsta[0])
-	{
-		if (lsta[0]->prev == NULL)
-			ft_printf("nill<--  ");
-		else
-			ft_printf("%d<--  ", lsta[0]->prev->content);
-		ft_printf("%d  -->  ", lsta[0]->content);
-		if (lsta[0]->next == NULL)
-			ft_printf("nill");
-		else
-			ft_printf("%d\n", lsta[0]->next->content);
-		//ft_printf("q[%d] target[%d]\n", lsta[0]->content, lsta[0]->q, lsta[0]->target);
-		lsta[0] = lsta[0]->next;
-	}
-	ft_printf("\n\nlst b :\n");
-	while (lsta[1])
-	{
-		if (lsta[1]->prev == NULL)
-			ft_printf("nill");
-		else
-			ft_printf("%d", lsta[1]->prev->content);
-		ft_printf("  <---  %d  --->  ", lsta[1]->content);
-		if (lsta[1]->next == NULL)
-			ft_printf("nill");
-		else
-			ft_printf("%d\n", lsta[1]->next->content);
-		//ft_printf("cost[%d][%d] target[%d] cost_t[%d], cheap[%d]\n", lsta[1]->content, lsta[1]->cost[0], lsta[1]->cost[1], lsta[1]->target, lsta[1]->cost[2], lsta[1]->cheap);
-		lsta[1] = lsta[1]->next;
-	}
-	get_next_line(0);
 	opti_move(data, find_cheapest(data->lst_b));
 	ft_put_stacka(data, 1);
 	incert_sort(data);

@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2025/01/15 15:46:01 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 11:04:26 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ int		parsing(t_stack **lst, char *str);
 //Instruction function :
 void	ft_swapa(t_data *lst_data, int print);
 void	ft_swapb(t_data *lst_data, int print);
-void	ft_swaps(t_data *lst_data);
+void	ft_swaps(t_data *lst_data, int print);
 
 void	ft_put_stacka(t_data *lst_data, int print);
 void	ft_put_stackb(t_data *lst_data, int print);
 
 void	ft_rotate_a(t_data *lst_data, int print);
 void	ft_rotate_b(t_data *lst_data, int print);
-void	ft_rotate_r(t_data *lst_data);
+void	ft_rotate_r(t_data *lst_data, int print);
 
 void	ft_rev_rotate_a(t_data *lst_data, int print);
 void	ft_rev_rotate_b(t_data *lst_data, int print);
-void	ft_rev_rotate_r(t_data *lst_data);
+void	ft_rev_rotate_r(t_data *lst_data, int print);
 
 //stack functiom
 void	*new_stack(int content);

@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 08:56:15 by secros            #+#    #+#             */
-/*   Updated: 2025/01/20 19:52:48 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 11:03:41 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void	ft_rev_rotate_b(t_data *lst_data, int print)
 		write(1, "rrb\n", 4);
 }
 
-void	ft_rev_rotate_r(t_data *lst_data)
+void	ft_rev_rotate_r(t_data *lst_data, int print)
 {
 	if ((!lst_data->lst_a || !lst_data->lst_a->next) 
 		&& (!lst_data->lst_b || !lst_data->lst_b->next))
 		return ;
 	ft_rev_rotate_a(lst_data, 0);
 	ft_rev_rotate_b(lst_data, 0);
-	write(1, "rrr\n", 4);
+	if (print)
+		write(1, "rrr\n", 4);
 } 
