@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:45:54 by secros            #+#    #+#             */
-/*   Updated: 2025/01/06 11:07:41 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:32:24 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,14 @@ static int	creat_stack(t_stack **lst, char *str)
 static int	only_digit(char *str)
 {
 	size_t	i;
-	
 
 	i = 0;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) || str[i] ==' ')
+		if (ft_isdigit(str[i]) || str[i] == ' ')
 			i++;
-		else if (ft_issign(str[i]) && (ft_isdigit(str[i + 1]) 
-			&& (i == 0 || str[i - 1] == ' ')))
+		else if (ft_issign(str[i]) && (ft_isdigit(str[i + 1])
+				&& (i == 0 || str[i - 1] == ' ')))
 			i++;
 		else
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:47:15 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 13:41:35 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:36:40 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	find_instruction(t_data *data, char *str)
 			ft_swapa(data, 0);
 		else if (str[0] == 'r')
 			ft_rotate_a(data, 0);
-
 	}
 	else if (str[1] == 'b')
 	{
@@ -65,11 +64,11 @@ int	get_instruction(t_data *data)
 	}
 	free (str);
 	if (check_sort(data->lst_a) && data->size_b == 0)
-			return (1);
+		return (1);
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	lst_data;
 	int		i;

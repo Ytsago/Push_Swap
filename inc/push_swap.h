@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 11:04:26 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:27:22 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		absolute(int x);
 
 //sort three
 void	sort_three(t_data *lst_data, t_stack **lst);
+void	sort_small(t_data *data);
 
 //pivo sort
 void	incert_sort(t_data *data);

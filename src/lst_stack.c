@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 08:43:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/19 15:01:13 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:36:05 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_stack	*stack_last(t_stack *stack)
 
 void	stack_clear(t_stack **stack)
 {
-	t_stack *pt;
+	t_stack	*pt;
 
 	if (!stack || !*stack)
 		return ;

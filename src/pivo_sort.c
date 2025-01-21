@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 10:57:32 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 11:22:00 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:55:00 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	medium_quart(t_data *data, int x, int y)
 
 void	quart_push(t_data *data)
 {
-	while (medium_quart(data, 2 ,3))
+	while (medium_quart(data, 2, 3))
 	{
 		if (data->lst_a->q == 3)
 			ft_put_stackb(data, 1);
@@ -81,7 +81,7 @@ void	quart_push(t_data *data)
 	}
 	while (data->size_a > 3)
 	{
-		if (data->lst_a->q  == 4)
+		if (data->lst_a->q == 4)
 			ft_put_stackb(data, 1);
 		else
 		{
@@ -148,7 +148,7 @@ void	*find_cheapest(t_stack *stk)
 		lst->cheap = 0;
 		lst = lst->next;
 	}
-	while(stk)
+	while (stk)
 	{
 		if (stk->cost[2] == x)
 		{
@@ -184,54 +184,24 @@ void	calc_cost(t_data *data, t_stack *lst, int i)
 	lst->cost[1] = j;
 }
 
-// void	opti_move(t_data *data, void *pt)
-// {
-// 	t_stack	*stk;
-
-// 	stk = pt;
-// 	while (stk->cost[0] > 0 && stk->cost[1] > 0)
-// 	{
-// 		ft_rotate_r(data);
-// 		stk->cost[0]--;
-// 		stk->cost[1]--;
-// 	}
-// 	while (stk->cost[0] < 0 && stk->cost[1] < 0)
-// 	{
-// 		ft_rev_rotate_r(data);
-// 		stk->cost[0]++;
-// 		stk->cost[1]++;
-// 	}
-// 	while (stk->cost[0] > 0)
-// 	{
-// 		ft_rotate_b(data, 1);
-// 		stk->cost[0]--;
-// 	}
-// 	while (stk->cost[1] > 0)
-// 	{
-// 		ft_rotate_a(data, 1);
-// 		stk->cost[1]--;
-// 	}
-// 	while (stk->cost[0] < 0)
-// 	{
-// 		ft_rev_rotate_b(data, 1);
-// 		stk->cost[0]++;
-// 	}
-// 	while (stk->cost[1] < 0)
-// 	{
-// 		ft_rev_rotate_a(data, 1);
-// 		stk->cost[1]++;
-// 	}
-// }
-
 void	cost_rotate(t_data *data, t_stack *stk, int way, char stack)
 {
 	if (way == 1)
 	{
-		if (stack == 'A')
-			ft_rotate_a(data, 1);
-		else if (stack == 'B')
-			ft_rotate_b(data, 1);
-		stk->cost[absolute('B' - stack)]--;
+		if (stack == 'R')
+		{
+			ft_rotate_r(data, 1);
+			stk->cost[0]--;
+			stk->cost[1]--;
+		}
+		else
+		{
+			if (stack == 'A')
+				ft_rotate_a(data, 1);
+			else if (stack == 'B')
+				ft_rotate_b(data, 1);
+			stk->cost[absolute('B' - stack)]--;
+		}
 	}
 	else if (way == 0)
 	{
@@ -251,11 +221,7 @@ void	opti_move(t_data *data, void *pt)
 	while (stk->cost[2] > 0)
 	{
 		if (stk->cost[0] > 0 && stk->cost[1] > 0)
-		{
-			ft_rotate_r(data, 1);
-			stk->cost[0]--;
-			stk->cost[1]--;
-		}
+			cost_rotate(data, stk, 1, 'R');
 		if (stk->cost[0] < 0 && stk->cost[1] < 0)
 		{
 			ft_rev_rotate_r(data, 1);
@@ -309,8 +275,6 @@ void	pivo_sort(t_data *data)
 {
 	size_t	len;
 
-	data->size_a = stack_size(data->lst_a);
-	data->size_b = 0;
 	len = data->size_a;
 	data->med = find_real_value(data->lst_a, data->lst_a, len, 2);
 	data->q[0] = find_real_value(data->lst_a, data->lst_a, len, 4);

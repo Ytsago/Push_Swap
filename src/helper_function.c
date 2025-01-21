@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:37:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 13:48:56 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:33:26 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	lst_max(t_stack *lst)
 	int	max;
 
 	max = lst->content;
-	while(lst)
+	while (lst)
 	{
 		if (max < lst->content)
 			max = lst->content;
@@ -26,12 +26,13 @@ int	lst_max(t_stack *lst)
 	}
 	return (max);
 }
+
 int	lst_min(t_stack *lst)
 {
 	int	min;
 
 	min = lst->content;
-	while(lst)
+	while (lst)
 	{
 		if (min > lst->content)
 			min = lst->content;
@@ -43,7 +44,7 @@ int	lst_min(t_stack *lst)
 int	just_next(t_data *data, int content)
 {
 	t_stack	*lst_a;
-	int	x;
+	int		x;
 
 	lst_a = data->lst_a;
 	x = lst_a->content;
@@ -53,7 +54,6 @@ int	just_next(t_data *data, int content)
 	{
 		if (content > x || (content < lst_a->content && lst_a->content < x))
 			x = lst_a->content;
-		
 		lst_a = lst_a->next;
 	}
 	return (x);
