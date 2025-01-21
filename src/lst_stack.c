@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 08:43:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 14:36:05 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:16:18 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,4 @@ t_stack	*stack_last(t_stack *stack)
 	while (stack->next)
 		stack = stack->next;
 	return (stack);
-}
-
-void	stack_clear(t_stack **stack)
-{
-	t_stack	*pt;
-
-	if (!stack || !*stack)
-		return ;
-	while (*stack)
-	{
-		pt = *stack;
-		*stack = (*stack)->next;
-		free(pt);
-	}
 }

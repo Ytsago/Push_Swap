@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:28:35 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 14:54:18 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:26:41 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ void	turn_lst(t_data *data)
 
 void	sorting(t_data *lst_data)
 {
-	int	i;
-
-	i = 0;
 	lst_data->size_a = stack_size(lst_data->lst_a);
 	lst_data->size_b = 0;
 	if (check_sort(lst_data->lst_a))
@@ -75,4 +72,5 @@ int	main(int ac, char **av)
 	if (!lst_data.lst_a)
 		return (0);
 	sorting(&lst_data);
+	stack_clear(&lst_data.lst_a);
 }

@@ -6,11 +6,25 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:45:54 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 14:32:24 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:20:37 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	stack_clear(t_stack **stack)
+{
+	t_stack	*pt;
+
+	if (!stack || !*stack)
+		return ;
+	while (*stack)
+	{
+		pt = *stack;
+		*stack = (*stack)->next;
+		free(pt);
+	}
+}
 
 static int	check_dup(t_stack *lst, int x)
 {

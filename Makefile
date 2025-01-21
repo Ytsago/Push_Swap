@@ -9,7 +9,7 @@ BLUE   = \033[34m
 RED    = \033[31m
 RESET  = \033[0m
 
-FILE =	main.c sort_three.c pivo_sort.c lst_stack.c
+FILE =	main.c sort_three.c pivo_sort.c lst_stack.c incertion.c median.c
 
 IFILE = helper_function.c parsing.c ft_putstack.c ft_rotate.c \
 		ft_rev_rotate.c ft_swap.c lst_stack.c

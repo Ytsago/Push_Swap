@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 14:27:22 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:12:23 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,14 @@ void	sort_small(t_data *data);
 void	incert_sort(t_data *data);
 void	pivo_init(t_data *lst_data);
 void	pivo_sort(t_data *lst_data);
+
+//incertion sort
+void	*find_cheapest(t_stack *stk);
+void	calc_cost(t_data *data, t_stack *lst, int i);
+void	cost_rotate(t_data *data, t_stack *stk, int way, char stack);
+void	set_target(t_data *data);
+int		find_real_value(t_stack *lst, t_stack *cur, size_t len, size_t div);
+void	set_quart(t_data *data, t_stack *lst);
+void	quart_push(t_data *data);
 
 #endif
