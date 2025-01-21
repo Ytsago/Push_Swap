@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:37:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/19 14:23:39 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:48:56 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,13 @@ int	absolute(int x)
 	return (x);
 }
 
-/*
-int	check_sort(t_list *lst)
+int	check_sort(t_stack *lst)
 {
 	while (lst->next)
 	{
-		if (*(int *)lst->content > *(int *)lst->next->content)
+		if (lst->content > lst->next->content)
 			return (0);
 		lst = lst->next;
 	}
 	return (1);
-} */
+}

@@ -9,8 +9,12 @@ BLUE   = \033[34m
 RED    = \033[31m
 RESET  = \033[0m
 
-FILE =	helper_function.c parsing.c main.c ft_putstack.c ft_rotate.c ft_rev_rotate.c \
-		ft_swap.c sort_three.c pivo_sort.c lst_stack.c
+FILE =	main.c sort_three.c pivo_sort.c lst_stack.c
+
+IFILE = helper_function.c parsing.c ft_putstack.c ft_rotate.c \
+		ft_rev_rotate.c ft_swap.c lst_stack.c
+
+BFILE = checker.c
 
 LIB_D = libft/
 
@@ -18,7 +22,7 @@ LIB = $(LIB_D)libft.a
 
 SRCDIR = src/
 
-SRCS = $(SRCDIR)$(FILE)
+SRCS = $(SRCDIR)$(FILE) $(SRCDIR)$(IFILE)
 
 INCDIR = inc/
 
@@ -26,9 +30,10 @@ INC = push_swap.h
 
 OBJDIR = .Obj/
 
-OBJS = $(FILE:%.c=$(OBJDIR)%.o)
+OBJS = $(FILE:%.c=$(OBJDIR)%.o) $(IFILE:%.c=$(OBJDIR)%.o)
 
 NAME = push_swap
+BNAME = checker
 
 all: $(NAME)
 
@@ -46,6 +51,9 @@ $(OBJDIR):
 $(LIB): FORCE
 	@$(MAKE) -C $(LIB_D) --no-print-directory
 
+bonus: all
+	@$(MAKE) NAME="$(BNAME)" FILE="$(BFILE)" MAKEOVERRIDES=
+
 clean:
 	@echo "$(RED)Deleting object files...$(RESET)"
 	@rm -rf $(OBJDIR) && echo "$(GREEN)Done !$(RESET)"
@@ -55,9 +63,12 @@ clean:
 fclean: clean
 	@echo "$(RED)Deleting executable or library $(NAME)...$(RESET)"
 	@rm -f $(NAME) && echo "$(GREEN)Done !$(RESET)"
+	@if [ -f "$(BNAME)" ]; then \
+	echo "$(RED)Deleting executable or library $(BNAME)...$(RESET)"; \
+	rm -f $(BNAME) && echo "$(GREEN)Done !$(RESET)"; \
+	fi
 	@$(MAKE) $@ -C $(LIB_D) --no-print-directory
 	
-
 re: fclean all
 
 FORCE:

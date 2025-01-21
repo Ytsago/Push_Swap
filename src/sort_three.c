@@ -6,22 +6,11 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 15:07:24 by secros            #+#    #+#             */
-/*   Updated: 2025/01/06 11:08:26 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:48:51 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	check_sort(t_stack *lst)
-{
-	while (lst->next)
-	{
-		if (lst->content > lst->next->content)
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
 
 void	sort_three(t_data *lst_data, t_stack **lst)
 {

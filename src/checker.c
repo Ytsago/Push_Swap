@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:47:15 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 11:39:49 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:41:35 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "get_next_line.h"
-
-/*
-
-if str[1] -> a // b
-	-> ra / rb / sa /sb / pa / pb
-
-*/
 
 void	find_rr_instr(t_data *data, char *str)
 {
@@ -63,15 +56,16 @@ int	get_instruction(t_data *data)
 {
 	char	*str;
 
-	str = get_next_line(1);
+	str = get_next_line(0);
 	while (str)
 	{
 		find_instruction(data, str);
 		free(str);
-		if (check_sort(data->lst_a) && data->size_b == 0)
-			return (1);
-		str = get_next_line(1);
+		str = get_next_line(0);
 	}
+	free (str);
+	if (check_sort(data->lst_a) && data->size_b == 0)
+			return (1);
 	return (0);
 }
 
