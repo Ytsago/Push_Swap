@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:41:19 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 16:12:23 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:37:34 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	sort_small(t_data *data);
 
 //pivo sort
 void	incert_sort(t_data *data);
-void	pivo_init(t_data *lst_data);
 void	pivo_sort(t_data *lst_data);
 
 //incertion sort

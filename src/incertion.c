@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:00:06 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 16:10:06 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:58:23 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_target(t_data *data)
 	}
 }
 
-int	calc_move( int x, int y)
+static int	calc_move( int x, int y)
 {
 	int	cost;
 

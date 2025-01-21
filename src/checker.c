@@ -6,14 +6,14 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:47:15 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 14:36:40 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:55:04 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "get_next_line.h"
 
-void	find_rr_instr(t_data *data, char *str)
+static void	find_rr_instr(t_data *data, char *str)
 {
 	if (str [1] == 's')
 		ft_swaps(data, 0);
@@ -27,7 +27,7 @@ void	find_rr_instr(t_data *data, char *str)
 		ft_rotate_r(data, 0);
 }
 
-void	find_instruction(t_data *data, char *str)
+static void	find_instruction(t_data *data, char *str)
 {
 	if (str[1] == 'a')
 	{
@@ -51,7 +51,7 @@ void	find_instruction(t_data *data, char *str)
 		find_rr_instr(data, str);
 }
 
-int	get_instruction(t_data *data)
+static int	get_instruction(t_data *data)
 {
 	char	*str;
 

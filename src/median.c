@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:00:54 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 16:12:39 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:57:45 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	find_real_value(t_stack *lst, t_stack *cur, size_t len, size_t div)
 	return (find_real_value(lst, cur->next, len, div));
 }
 
-int	find_quart(t_data *data, int x)
+static int	find_quart(t_data *data, int x)
 {
 	if (x <= data->q[0])
 		return (1);
@@ -50,7 +50,7 @@ int	find_quart(t_data *data, int x)
 	}
 }
 
-int	medium_quart(t_data *data, int x, int y)
+static int	medium_quart(t_data *data, int x, int y)
 {
 	t_stack	*lst;
 
