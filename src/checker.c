@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:47:15 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 16:55:04 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/21 17:53:47 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	get_instruction(t_data *data)
 		free(str);
 		str = get_next_line(0);
 	}
-	free (str);
 	if (check_sort(data->lst_a) && data->size_b == 0)
 		return (1);
 	return (0);
