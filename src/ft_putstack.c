@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:02:43 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 10:09:52 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/22 23:04:31 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	ft_put_stackb(t_data *lst_data, int print)
 		return ;
 	tmp = *lst_a;
 	*lst_a = (*lst_a)->next;
-	(*lst_a)->prev = NULL;
+	if (*lst_a)
+		(*lst_a)->prev = NULL;
 	tmp->next = NULL;
 	tmp->prev = NULL;
 	stack_addfront(lst_b, tmp);

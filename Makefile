@@ -33,6 +33,7 @@ OBJDIR = .Obj/
 OBJS = $(FILE:%.c=$(OBJDIR)%.o) $(IFILE:%.c=$(OBJDIR)%.o)
 
 NAME = push_swap
+
 BNAME = checker
 
 all: $(NAME)

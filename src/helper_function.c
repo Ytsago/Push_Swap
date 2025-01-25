@@ -6,7 +6,7 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:37:17 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 16:26:56 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/22 23:06:18 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	absolute(int x)
 
 int	check_sort(t_stack *lst)
 {
+	if (!lst)
+		return (0);
 	while (lst->next)
 	{
 		if (lst->content > lst->next->content)

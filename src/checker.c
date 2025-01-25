@@ -6,49 +6,70 @@
 /*   By: secros <secros@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:47:15 by secros            #+#    #+#             */
-/*   Updated: 2025/01/21 17:53:47 by secros           ###   ########.fr       */
+/*   Updated: 2025/01/26 00:55:09 by secros           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "get_next_line.h"
 
+void	quit_checker(t_data *data)
+{
+	stack_clear(&data->lst_a);
+	stack_clear(&data->lst_b);
+	write(2, "Error.\n", 6);
+	exit(1);
+}
+
 static void	find_rr_instr(t_data *data, char *str)
 {
-	if (str [1] == 's')
-		ft_swaps(data, 0);
-	else if (str[2] == 'a')
-		ft_rev_rotate_a(data, 0);
-	else if (str[2] == 'b')
-		ft_rev_rotate_b(data, 0);
-	else if (str[2] == 'r')
-		ft_rev_rotate_r(data, 0);
+	if (str[1] == 'a' && str[2] == '\n')
+		ft_rotate_a(data, 0);
+	else if (str[1] == 'b' && str[2] == '\n')
+		ft_rotate_b(data, 0);
+	else if (str[1] == 'r')
+	{
+		if (str[2] == '\n')
+			ft_rotate_r(data, 0);
+		else if (str[2] == 'a' && str[3] == '\n')
+			ft_rev_rotate_a(data, 0);
+		else if (str[2] == 'b' && str[3] == '\n')
+			ft_rev_rotate_b(data, 0);
+		else if (str[2] == 'r' && str[3] == '\n')
+			ft_rev_rotate_r(data, 0);
+		else
+			quit_checker(data);
+	}
 	else
-		ft_rotate_r(data, 0);
+		quit_checker(data);
 }
 
 static void	find_instruction(t_data *data, char *str)
 {
-	if (str[1] == 'a')
+	if (str[0] == 'p')
 	{
-		if (str[0] == 'p')
+		if (str[1] == 'a' && str[2] == '\n')
 			ft_put_stacka(data, 0);
-		else if (str[0] == 's')
-			ft_swapa(data, 0);
-		else if (str[0] == 'r')
-			ft_rotate_a(data, 0);
-	}
-	else if (str[1] == 'b')
-	{
-		if (str[0] == 'p')
+		else if (str[1] == 'b' && str[2] == '\n')
 			ft_put_stackb(data, 0);
-		else if (str[0] == 's')
-			ft_swapb(data, 0);
-		else if (str[0] == 'r')
-			ft_rotate_b(data, 0);
+		else
+			quit_checker(data);
 	}
-	else
+	else if (str[0] == 's')
+	{
+		if (str[1] == 'a' && str[2] == '\n')
+			ft_swapa(data, 0);
+		else if (str[1] == 'b' && str[2] == '\n')
+			ft_swapb(data, 0);
+		else if (str[1] == 's' && str[2] == '\n')
+			ft_swaps(data, 0);
+		else
+			quit_checker(data);
+	}
+	else if (str[0] == 'r')
 		find_rr_instr(data, str);
+	else
+		quit_checker(data);
 }
 
 static int	get_instruction(t_data *data)
@@ -85,6 +106,8 @@ int	main(int ac, char **av)
 	}
 	lst_data.size_a = stack_size(lst_data.lst_a);
 	lst_data.size_b = 0;
+	if (ac == 1)
+		return (0);
 	if (get_instruction(&lst_data))
 		write (1, "OK\n", 3);
 	else
